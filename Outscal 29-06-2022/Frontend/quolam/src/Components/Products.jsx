@@ -19,7 +19,7 @@ export default function Products() {
 
   useEffect(() => {
     axios
-      .get("https://outscalassignment.herokuapp.com//products")
+      .get("https://outscalassignment.herokuapp.com/products")
       .then((res) => {
         setProducts(res.data);
       });
@@ -28,7 +28,7 @@ export default function Products() {
   const handleSort = (e) => {
     let newData = [];
     axios
-      .get("https://outscalassignment.herokuapp.com//products")
+      .get("https://outscalassignment.herokuapp.com/products")
       .then((res) => {
         newData = res.data;
         if (e === "sortPriceAsc") {
@@ -43,7 +43,7 @@ export default function Products() {
   const handlePriceFilter = (e) => {
     let newFilterData = [];
     axios
-      .get("https://outscalassignment.herokuapp.com//products")
+      .get("https://outscalassignment.herokuapp.com/products")
       .then((res) => {
         newFilterData = res.data;
 
