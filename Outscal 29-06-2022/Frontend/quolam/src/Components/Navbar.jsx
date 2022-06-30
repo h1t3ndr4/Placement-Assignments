@@ -4,7 +4,7 @@ import { Nav, Heading, StyledLink } from "./StyledComponents";
 export default function Navbar() {
   return (
     <Nav>
-      <Heading>Quolam</Heading>
+      <Heading>Outscal</Heading>
       <StyledLink>Products</StyledLink>
     </Nav>
   );
