@@ -18,40 +18,46 @@ export default function Products() {
   };
 
   useEffect(() => {
-    axios.get("https://quolamassignment.herokuapp.com/products").then((res) => {
-      setProducts(res.data);
-    });
+    axios
+      .get("https://outscalassignment.herokuapp.com//products")
+      .then((res) => {
+        setProducts(res.data);
+      });
   }, []);
 
   const handleSort = (e) => {
     let newData = [];
-    axios.get("https://quolamassignment.herokuapp.com/products").then((res) => {
-      newData = res.data;
-      if (e === "sortPriceAsc") {
-        newData.sort((a, b) => a.price - b.price);
-      } else if (e === "sortPriceDes") {
-        newData.sort((a, b) => b.price - a.price);
-      }
-      setProducts(newData);
-    });
+    axios
+      .get("https://outscalassignment.herokuapp.com//products")
+      .then((res) => {
+        newData = res.data;
+        if (e === "sortPriceAsc") {
+          newData.sort((a, b) => a.price - b.price);
+        } else if (e === "sortPriceDes") {
+          newData.sort((a, b) => b.price - a.price);
+        }
+        setProducts(newData);
+      });
   };
 
   const handlePriceFilter = (e) => {
     let newFilterData = [];
-    axios.get("https://quolamassignment.herokuapp.com/products").then((res) => {
-      newFilterData = res.data;
+    axios
+      .get("https://outscalassignment.herokuapp.com//products")
+      .then((res) => {
+        newFilterData = res.data;
 
-      if (e === "1000 - 1499") {
-        newFilterData = newFilterData.filter(
-          (item) => item.price > 1000 && item.price < 1499
-        );
-      } else if (e === "1500 - 3000") {
-        newFilterData = newFilterData.filter(
-          (item) => item.price > 1500 && item.price < 3000
-        );
-      }
-      setProducts(newFilterData);
-    });
+        if (e === "1000 - 1499") {
+          newFilterData = newFilterData.filter(
+            (item) => item.price > 1000 && item.price < 1499
+          );
+        } else if (e === "1500 - 3000") {
+          newFilterData = newFilterData.filter(
+            (item) => item.price > 1500 && item.price < 3000
+          );
+        }
+        setProducts(newFilterData);
+      });
   };
 
   //if my scroll bar is at the bottom, load more products
