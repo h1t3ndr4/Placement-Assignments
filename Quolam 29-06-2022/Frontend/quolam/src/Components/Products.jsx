@@ -23,42 +23,35 @@ export default function Products() {
     });
   }, []);
 
-  const handleSort = (value) => {
+  const handleSort = (e) => {
     let newData = [];
-    newData = products;
-    if (value === "sortPriceAsc") {
-      newData.sort((a, b) => {
-        if (a.price > b.price) {
-          return 1;
-        }
-        return -1;
-      });
-    } else if (value === "sortPriceDes") {
-      newData.sort((a, b) => {
-        if (a.price < b.price) {
-          return 1;
-        }
-        return -1;
-      });
-    }
-    setProducts(newData);
+    axios.get("https://quolamassignment.herokuapp.com/products").then((res) => {
+      newData = res.data;
+      if (e === "sortPriceAsc") {
+        newData.sort((a, b) => a.price - b.price);
+      } else if (e === "sortPriceDes") {
+        newData.sort((a, b) => b.price - a.price);
+      }
+      setProducts(newData);
+    });
   };
 
-  const handlePriceFilter = (value) => {
-    let newData = [];
-    newData = products;
-    if (value === "1000 - 1499") {
-      newData = newData.filter(
-        (item) => item.price > 1000 && item.price < 1499
-      );
-    } else if (value === "1500 - 3000") {
-      newData = newData.filter(
-        (item) => item.price > 1500 && item.price < 3000
-      );
-    } else if (value === "all") {
-      newData = products;
-    }
-    setProducts(newData);
+  const handlePriceFilter = (e) => {
+    let newFilterData = [];
+    axios.get("https://quolamassignment.herokuapp.com/products").then((res) => {
+      newFilterData = res.data;
+
+      if (e === "1000 - 1499") {
+        newFilterData = newFilterData.filter(
+          (item) => item.price > 1000 && item.price < 1499
+        );
+      } else if (e === "1500 - 3000") {
+        newFilterData = newFilterData.filter(
+          (item) => item.price > 1500 && item.price < 3000
+        );
+      }
+      setProducts(newFilterData);
+    });
   };
 
   //if my scroll bar is at the bottom, load more products
